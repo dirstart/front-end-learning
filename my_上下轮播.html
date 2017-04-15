@@ -1,152 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE HTML>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-	body,div,ul,li{
-		margin:0;
-		padding:0;
-		list-style: none;
-		border: 0;
+<meta charset="utf-8">
+<title>面试题-动态生成表格</title>
+<style>
+body{font:700 14px/1.5 Arial;margin:0;padding:0 10px;}
+table{clear:both;border:1px solid #000;}
+td{color:#FFF;cursor:pointer;text-align:center;border:1px solid #000;padding:5px;}
+#setting{float:left;clear:left;line-height:28px;margin:10px 0;}
+#setting input{width:50px;font-family:inherit;border:2px solid #CCC;margin:0 5px;padding:4px;}
+#btn{font-size:14px;line-height:18px;color:#fff;text-decoration:none;background:#353535;border-top:1px #999 solid;border-radius:5px;padding:4px 6px;}
+#msg{float:left;clear:both;height:25px;display:none;line-height:25px;margin-bottom:10px;}
+#msg em{width:25px;height:25px;display:inline-block;margin-right:5px;}
+#setting label,#setting input,#setting a,#msg span,#msg em{float:left;}
+</style>
+<script>
+/*
+ 在蓝色理想看到的网友提问, 闲来无事做了一下
+ 要求：
+ 1) 任意输入行数或列数, 生成对应表格;
+ 2) 行数, 列数必须为正整数类型, 否则提示非法;(这里我用正则限制1-100, 避免网友测试输入过大值造成浏览器假死)
+ 3) 在生成表格的单元格中随机填入1到15之间的随机数, 并给每个单元格设置随机背景颜色;
+ 4) 点击任意单元格, 将其数和背景颜色输出显示;
+ 5) 效率要求：100*100生成表格时间小于3秒;
+ 6) 代码中要用到事件代理机制;
+ 7) 设计一种简单机制, 使单元格数小于255*255*255时, 颜色不重复
+ 8) 要求符合w3c验证, 兼容IE, Firefox, chrome等浏览器
+*/
+function CreateTable() {
+	this.oTable  = null;
+	this.bgColor = 0;
+}
+CreateTable.prototype = {
+	init: function(row, col) {
+		var oFrag = document.createDocumentFragment();
+		var oTemp = document.createElement("div");
+		var oBody = document.body;
+		var aRow  = [];
+		var aCol  = [];
+		for(var i = row; i--;) {
+			aCol.length = 0;			
+			for(var j = col; j--;) {
+				this.bgColor = this.getRanColor();
+				aCol.push("<td style=\"background:"+ this.bgColor +";\">"+this.randomRange(1, 15)+"</td>");
+			}
+			aRow.push("<tr>"+ aCol.join("") +"</tr>")
+		}
+		oTemp.innerHTML = "";
+		oTemp.innerHTML = "<table><tbody>"+ aRow.join("") +"</tbody></table>";
+		while(oTemp.firstChild) oFrag.appendChild(oTemp.firstChild);
+		this.oTable && oBody.removeChild(this.oTable);
+		oBody.appendChild(oFrag);
+		this.oTable = oBody.lastChild
+	},
+	randomRange: function(lower, upper) {
+		return Math.floor(Math.random() * (upper - lower + 1) + lower)	
+	},
+	getRanColor: function() {
+		var str = this.randomRange(0, 0xF0F0F0).toString(16);
+		while(str.length < 6) str = "0" + str;
+		return "#" + (this.bgColor.toString().replace("#", "").toString(10) === str.toString(10) ? str + 100000 : str)
 	}
-	body{
-		background: #000;
-	}
-	#box{
-		width: 502px;
-		height: 202px;
-		margin:10px auto;
-		border: 8px solid #002232;
-		position: relative;
+};
 
-		overflow: hidden;
+window.onload = function() {
+	var oTab = new CreateTable();
+	var oRow = document.getElementById("row");
+	var oCol = document.getElementById("col");
+	var oBtn = document.getElementById("btn");
+	var oMsg = document.getElementById("msg");
 
+	oBtn.onclick = function() {
+		var reg = /^((?!0)\d{1,2}|100)$/;
+		if(!reg.test(oRow.value)) {
+			alert("\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u6570\u503c\uff1a\n\n\u5217\u6570\u8303\u56f4\u30101-100\u3011");
+			oRow.select();
+			return
+		}
+		else if(!reg.test(oCol.value)) {
+			alert("\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u6570\u503c\uff1a\n\n\u884c\u6570\u8303\u56f4\u30101-100\u3011");
+			oCol.select();
+			return
+		}
+		//隐藏信息区域
+		oMsg.style.display = "none";
+		//防止内存泄漏
+		oTab.oTable && (oTab.oTable.onclick = null);
+		//重新渲染表格
+		oTab.init(oRow.value, oCol.value);
+		//事件代理
+		oTab.oTable.onclick = function(e) {
+			e = e || event;
+			var oTarget = e.target || e.srcElement;
+			if(oTarget.tagName.toUpperCase() === "TD") {
+				oMsg.style.display = "block";
+				oMsg.innerHTML = "";
+				oMsg.innerHTML = "<span>\u60a8\u9009\u62e9\u7684\u533a\u57df\u6570\u5b57\u662f\uff1a"+oTarget.innerHTML+"\uff0c\u989c\u8272\u4e3a\uff1a"+"</span><em style=\"background:"+ oTarget.style.backgroundColor +";\"></em><span>"+oTarget.style.backgroundColor+"</span>";	
+			}
+		}
 	}
-	#box .list-image{
-		/*border: 1px solid purple;*/
-		width: 500px;
-		height: 200px;
-		position: absolute;
-	}
-	#box .list-image li{
-		border: 1px solid purple;
-		width: 500px;
-		height: 200px;
-	}
-	#box .list-number{
-		z-index: 999;
-		position: absolute;
-		right: 0;
-		bottom: 5px;
-	}
-	#box .list-number li{
-		color: #fff;
-		float: left;
-		width: 20px;
-		height: 20px;
-		background: #f60;
-		border-radius: 20px;
-		font:12px/20px Arial;
-		/*这里有个要点*/
-		margin-right: 10px;
-		cursor: pointer;
-		text-align: center;
-		opacity: 0.7;
-		filter: alpha(opacity=70);
-	}
-	#box .list-number li.current{
-		opacity: 1;
-		filter: alpha(opacity=100);
-	}
-
-	</style>
+};
+</script>
 </head>
 <body>
-	<div id="box">
-		<ul class="list-image">
-			<li><img src="../image/landscape_map/047.jpg" width="500px" height="200px"></li>
-			<li><img src="../image/landscape_map/041.jpg" width="500px" height="200px"></li>
-			<li><img src="../image/landscape_map/042.jpg" width="500px" height="200px"></li>
-			<li><img src="../image/landscape_map/043.jpg" width="500px" height="200px"></li>
-			<li><img src="../image/landscape_map/037.jpg" width="500px" height="200px"></li>
-		</ul>
-	</div>
+<div id="setting">
+    <label>行数</label><input type="text" id="row" />
+    <label>列数</label><input type="text" id="col" />
+    <a href="javascript:;" id="btn">生成表格</a>
+</div>
+<div id="msg"></div>
 </body>
-<script>
-var oBox=document.getElementById("box");
-var oUl=oBox.getElementsByTagName("ul");
-var oImage=oUl[0].getElementsByTagName("li");
-
-//创建数组元素
-var tmp=[];
-for(var i=0;i<oImage.length;i++){
-	tmp.push("<li>"+(i+1)+"</li>");
-}
-//现在tmp中保存着五个<li>
-var oCount=document.createElement("ul");
-oCount.className="list-number";
-oCount.innerHTML=tmp.join('');
-
-oBox.appendChild(oCount);
-
-
-
-var index=0;
-oNumber=oCount.getElementsByTagName("li");
-
-for(var i=0;i<oNumber.length;i++){
-	oNumber[i].index=i;
-	oNumber[i].onmouseover=function(){
-		show(this.index);
-	}
-}
-
-
-function show(x){
-	for(var i=0;i<oNumber.length;i++)
-	{
-		oNumber[i].className="";
-	}
-	oNumber[x].className="current";
-
-	Move(x);
-}
-
-
-var timer=null;
-function Move(x){
-	clearInterval(timer);
-	//赋值的时候要加上"px"哦
-	target=-x*202;
-	timer=setInterval(function(){
-		var speed=(-x*202-oUl[0].offsetTop)/10;
-		//因为是当前值，所有这个speed可正可负，根据我们所处图片的位置和要切换的目的地不同而定
-		speed=speed>0?Math.floor(speed):Math.floor(speed);
-		oUl[0].offsetTop==target?clearInterval(timer):oUl[0].style.top=oUl[0].offsetTop+speed+"px";
-},30)
-}
-
-
-var autotimer=null;
-oBox.onmousemouve=function(){
-	clearInterval(autotimer);
-}
-
-oBox.onmouseover=function(){
-
-}
-
-function auto(){
-	autotimer=setInterval(function(){
-		if(index<oImage.length-1){
-			index++;
-		}else{
-			index=0;
-		}
-		show(index);
-	},2000)
-}
-auto();
-</script>
 </html>
