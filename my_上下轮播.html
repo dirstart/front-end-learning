@@ -125,11 +125,13 @@ function Move(x){
 		speed=speed>0?Math.ceil(speed):Math.floor(speed);
 		oUl[0].offsetTop==target?clearInterval(timer):oUl[0].style.top=oUl[0].offsetTop+speed+"px";
 },30)
+
+	index=x;//为了bug：若是我们先按了3，再来开进行自动轮播，它是从上一次index记录的开始自动。
 }
 
 
 var autotimer=null;
-oBox.onmousemouve=function(){
+oBox.onmouseout=function(){
 	auto();
 }
 
