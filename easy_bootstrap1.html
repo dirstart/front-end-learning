@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="rely/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="rely/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>first bootstrap</h1>
+		<nav class="navbar navbar-inverse">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+					aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				<a class="navbar-brand" href="#">Brand</a>
+			</div>
+			<!-- 以上的div在PC端上暂时无法测试，按教程来说，这是在手机端的面包屑导航？ -->
+		<!-- navbar会帮我创建导航条，默认是白色的底色，navbar-inverse表示相反的导航条，即是说黑底白色 -->
+			<div  id="navbar-menu" class="navbar-collapse">
+			<!-- .navbar-collapse说明在窗口宽度小于768px的时候，将导航变成垂直方向 -->
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">HOME</a></li>
+					<li><a href="#">Page One</a></li>
+					<li><a href="#">Page Two</a></li>
+				</ul>
+				<!-- .navbar-nav说明是用于navbar中的导航,li是实际的导航项目 -->
+			</div>
+			
+		</nav>
+		<!-- 接下来是内容和侧边栏 -->
+		<div id="content" class="row-fluid">
+			<div class="col-md-9">
+				<h2>Main content section</h2>
+				<p>@gray-darker:  lighten(#000, 13.5%); // #222
+@gray-dark:    lighten(#000, 20%);   // #333
+@gray:         lighten(#000, 33.5%); // #555
+@gray-light:   lighten(#000, 46.7%); // #777
+@gray-lighter: lighten(#000, 93.5%); // #eee</p>
+			</div>
+			<div class="col-md-3">
+				<h2>Sidebar</h2>
+				<ul class="nav nav-tabs nav-stacked">
+					<li><a href="#">Another link1</a></li>
+					<li><a href="#">Another link2</a></li>
+					<li><a href="#">Another link3</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+<script src="rely/jquery.min.js"></script>
+<script src="rely/bootstrap.min.js"></script>
+</body>
+</html>
