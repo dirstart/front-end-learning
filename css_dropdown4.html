@@ -36,6 +36,9 @@
 		}
 		h3{
 			clear: both;
+			z-index: -1;
+			position: relative;
+			/*以上两句话用来解决遮挡li的bug*/
 		}
 		.drop-down-content li:hover a{
 			background-color: red;
@@ -60,6 +63,6 @@
 		<li><a href="#">电影</a></li>
 		<li><a href="#">漫画</a></li>
 	</ul>
-	<h3>Just for test.</h3>
+	<h3>Just for test.test long.</h3>
 </body>
 </html>
