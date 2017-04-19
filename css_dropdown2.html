@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	 ul{
+            list-style: none;
+        }
+        .nav>li{
+            float: left;
+        }
+        ul a{
+            display: block;
+            text-decoration: none;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            background-color: #2f3e45;
+        }
+	 .nav>li:first-child a{
+            border-radius: 10px 0 0 10px;
+        }
+        .nav>li:last-child a{
+            border-radius: 0 10px 10px 0;
+        }
+	
+	.drop-down{
+		height: 50px;
+		overflow: hidden;
+/*		position: relative;*/
+	}
+	.drop-down-content{
+	/*	position: absolute;*/
+		padding: 0;
+	}
+
+	h3{
+		font-size: 30px;
+		clear: both;
+/*		position: relative;
+		z-index: -1;*/
+	}
+	.drop-down-content li:hover a{
+		background-color: red;
+	}
+	.nav .drop-down:hover{
+		overflow: visible;
+	}
+	</style>
+</head>
+<body>
+	<ul class="nav">
+		<li><a href="#">首页</a></li>
+		<li class="drop-down"><a href="#">运动</a>
+			<ul class="drop-down-content">
+				<li><a href="#">排球</a></li>
+				<li><a href="#">羽毛球</a></li>
+				<li><a href="#">篮球</a></li>
+			</ul>
+		</li>
+
+		<li><a href="#">动漫</a></li>
+		<li><a href="#">书籍</a></li>
+		<li><a href="#">影视</a></li>
+	</ul>
+	<h3>我是测试文字</h3>
+
+	<!-- 发现文字被遮挡了，解决方案有两种，一种是给drow-down设置position:relative，给drop-down-content设置position:absolute；另外一种是给h3设置positon:relative;z-index:-1，总而言之就是脱离文档流 -->
+</body>
+</html>
