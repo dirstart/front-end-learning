@@ -3,6 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+	/*5.利用下拉菜单li的position:relative;下拉菜单绝对定位并且设置left:-999px;让菜单跑到左边浏览器看不见的地方，悬浮时left:0;*/
+		ul,li{list-style: none;}
+		.nav>li{
+			float: left;
+		}
+		ul a{
+			width: 100px;
+			height: 50px;
+			display: block;
+			line-height: 50px;
+			text-align: center;
+			text-decoration: none;
+			background-color: black;
+			color: #fff;
+		}
+		.nav>li:first-child a{
+			border-radius: 10px 0 0 10px;
+		}
+		.nav>li:last-child a{
+			border-radius: 0 10px 10px 0;
+		}
+		.drop-down{
+			position: relative;
+		}
+		.drop-down-content{
+			padding: 0;
+			/*只要加了这句话，这句话相当于是跟其他的li的摩擦距离为0*/
+			position: absolute;
+			left: -999px;
+		}
+		h3{
+			clear: both;
+		}
+		.drop-down-content li:hover a{
+			background-color: red;
+		}
+		.nav .drop-down:hover .drop-down-content{
+			left: 0;
+		}
+	</style>
 </head>
 <body>
 	<ul class="nav">
