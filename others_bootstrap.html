@@ -1,0 +1,482 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>bootstrap左右布局</title>
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="css.css" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src:url('fonts/glyphicons-halflings-regular.eot')
+  src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+@charset "UTF-8";
+/* CSS Document */
+html,body{
+	color:#505050;
+	line-height:1.75em;
+	background:#ebebeb;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+
+.main-header{
+	text-align:center;
+	padding:42px 0;
+	background:url(images/banner_01.jpg) no-repeat;
+	}
+
+a{
+	color:#56146c;
+	outline:none;
+	text-decoration:none;
+	}
+a:active,a:focus,a img{
+	outline:none
+	}
+.main-navigation{
+	text-align:center;
+	background:#fff;
+	border-top:1px solid #ebebeb;
+	border-bottom:3px solid #e1e1e1;
+	color:#56146c
+	}
+.main-navigation .menu {
+  padding: 0;
+  margin: 0;
+}
+.main-navigation .menu li {
+  list-style: none;
+  display: inline-block;
+  position: relative;
+}
+.main-navigation .menu li.nav-current {
+  border-bottom: 2px solid #56146c;
+  margin-bottom: -2px;
+}
+.main-navigation .menu li a {
+  color: #56146c;
+  line-height: 4em;
+  display: block;
+  padding: 0 21px;
+  font-weight:bold;
+  font-size:14px;
+  text-decoration:none
+}
+.main-navigation .menu li:hover > a {
+  color: #333;
+  text-decoration: none;
+}
+
+.main-navigation .menu li ul li {
+  display: block;
+  margin: 0;
+}
+
+.post{
+	padding:35px;
+	background:#fff;
+	margin-bottom:35px;
+	position:relative;
+	overflow:hidden;
+	margin-top:40px;
+	}
+.post .cont-head{
+	text-align:center;
+	font-size:0.6em;
+	}
+.post .cont-head .post-title{
+	margin:0;
+	font-size:2.5em;
+	line-height:1em
+	}
+.post .cont-head .post-title a{
+	color:#303030;
+	}
+.post .cont-head .cont-meta{
+	color:#959595;
+	margin:12px 0;
+	font-size:14px;
+
+	}
+.cont-content{
+	color:#444443;
+	}
+.cont-content p{
+	margin-top:0;
+	margin-bottom:1.46em
+	}
+.btn-default{
+	border:1px solid #56146c;
+	background:#56146c;
+	color:#fff;
+	transition:all 0.2s ease-in-out;
+	-webkit-transition:all 0.2s ease-in-out;
+	}
+.btn{
+	padding:7px 14px;
+	border-radius:2px;
+	}
+.pagination {
+  margin: 0 0 35px;
+  text-align: center;
+  display: block;
+}
+.pagination a {
+  text-align: center;
+  display: inline-block;
+  color: #ffffff;
+  background: #56146c;
+  border-radius: 2px;
+}
+.pagination a a:hover {
+  background: #505050;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.pagination .page-number {
+  background: #56146c;
+  color: #ffffff;
+  margin: 0 3px;
+  display: inline-block;
+  line-height: 36px;
+  padding: 0 14px;
+  border-radius: 2px;
+}
+.pagination .page-next{
+	padding:5px;
+	width:25px;
+	text-decoration:none;
+	text-align:center center;
+	font-weight:bold
+	}
+
+.pull-left a{
+	font-size:14px;
+	color:#999;
+	text-decoration:none;
+	margin-top:2px;
+	vertical-align:middle
+	}
+.sidebar .widget{
+	background:#fff;
+	padding:21px 30px;
+	}
+
+.widget .title{
+	margin-top:0;
+	padding-bottom:7px;
+	border-bottom:1px solid #ebebeb;
+	margin-bottom:21px;
+	position:relative
+	}
+.sidebar{
+	padding-top:40px;
+	}
+.widget{
+	text-transform:uppercase;
+	margin-bottom:35px;
+	}
+
+.widget .tag-menu a:hover{
+	background:#56146c;
+	color:#fff;
+	border:1px solid #56146c;
+	text-decoration:none
+	}
+.main-footer{
+	background:#202020;
+	padding-top:25px;
+	}
+
+.main-footer .widget {
+  padding: 0px 30px;
+}
+.widget {
+  margin-bottom: 35px;
+}
+.widget .title:after {
+  content: "";
+  width: 90px;
+  height: 1px;
+  background: #56146c;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+}
+
+.widget .recent-post .recent-single-post:last-child {
+  margin-bottom: 0;
+}
+.widget .recent-post .recent-single-post .post-title {
+  color: #505050;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.widget .recent-post .recent-single-post .post-title:hover {
+  color: #56146c;
+  text-decoration: none;
+}
+.widget .recent-post .recent-single-post .date {
+  color: #959595;
+}
+.widget .tag-menu a {
+  border: 1px solid #ebebeb;
+  padding: 2px 7px;
+  color: #959595;
+  line-height: 1.5em;
+  display: inline-block;
+  margin: 0 7px 7px 0;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+
+
+</style>
+</head>
+
+<body>
+<header>
+<div class="main-header">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<a class="logo" href="http://www.w3cfuns.com/manage/note" target="_blank" title="bootstrap左右布局">
+<img src="images/logo_03.png"></a>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<!-- start navigation -->
+    <nav class="main-navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
+                        <span class="sr-only">bootstrap左右布局</span>
+                        <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                    <div class="collapse navbar-collapse text-uppercase " id="main-menu">
+                        <ul class="menu">
+        <li class="nav-current" role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note">Article</a></li>
+        <li role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note"> about us</a></li>
+        <li role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note">download </a></li>
+        <li role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note">gallery </a></li>
+        <li role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note">links events</a></li>
+        <li role="presentation"><a target="_blank" href="http://www.w3cfuns.com/manage/note"> contact us </a></li>
+</ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<section class="content-wrap">
+<div class="container">
+<div class="row">
+<main class="col-md-8 main-content">
+<article class="post tag-release tag-about">
+<div class="cont-head">
+<h1 class="post-title text-uppercase">
+<a href="#">Airport Seeks Owner of ‘Abandoned’ Jet, 
+Officials Say</a>
+</h1>
+<div class="cont-meta">
+<span class="author">
+The author : 
+<a href="#">Johan Smith </a>
+</span>
+<time class="date" datetime="2016-01-01">Dec, 16, 2015</time>
+</div>
+</div>
+<div class="cont-content">
+<p><img src="images/pho1_04.jpg"></p>
+<p>The model is talking about booking her latest gig, modeling WordPress underwear in the brand latest Perfectly 
+Fit campaign, which was shot by Lachian Bailey. It was such a surreal moment cried she admitted. Lorem Ipsum
+is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard 
+dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type 
+specimen book.</p>
+</div>
+<div class="cont-permailnk text-uppercase">
+<a href="#" class="btn btn-default">read more</a>
+</div>
+<div class="cont-footer clearfix">
+<hr>
+<div class="pull-left tag-list">
+<span><img src="images/icon_08.jpg"> </span>
+<a>Cras consequat convallis libero ac vitae tincidunt dolor in elementum</a>
+</div>
+</article>
+<article class="post tag-release tag-about">
+<div class="cont-head">
+<h1 class="post-title text-uppercase">
+<a href="#">Airport Seeks Owner of ‘Abandoned’ Jet, 
+Officials Say</a>
+</h1>
+<div class="cont-meta">
+<span class="author">
+The author : 
+<a href="#">Johan Smith </a>
+</span>
+<time class="date" datetime="2016-01-01">Dec, 16, 2015</time>
+</div>
+</div>
+<div class="cont-content">
+
+<p>The model is talking about booking her latest gig, modeling WordPress underwear in the brand latest Perfectly 
+Fit campaign, which was shot by Lachian Bailey. It was such a surreal moment cried she admitted. Lorem Ipsum
+is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard 
+dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type 
+specimen book.</p>
+</div>
+<div class="cont-permailnk text-uppercase">
+<a href="#" class="btn btn-default">read more</a>
+</div>
+<div class="cont-footer clearfix">
+<hr>
+<div class="pull-left tag-list">
+<span><img src="images/icon_08.jpg"> </span>
+<a>Cras consequat convallis libero ac vitae tincidunt dolor in elementum</a>
+</div>
+</article>
+<article class="post tag-release tag-about">
+<div class="cont-head">
+<h1 class="post-title text-uppercase">
+<a href="#">Airport Seeks Owner of ‘Abandoned’ Jet, 
+Officials Say</a>
+</h1>
+<div class="cont-meta">
+<span class="author">
+The author : 
+<a href="#">Johan Smith </a>
+</span>
+<time class="date" datetime="2016-01-01">Dec, 16, 2015</time>
+</div>
+</div>
+<div class="cont-content">
+
+<p>The model is talking about booking her latest gig, modeling WordPress underwear in the brand latest Perfectly 
+Fit campaign, which was shot by Lachian Bailey. It was such a surreal moment cried she admitted. Lorem Ipsum
+is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard 
+dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type 
+specimen book.</p>
+</div>
+<div class="cont-permailnk text-uppercase">
+<a href="#" class="btn btn-default">read more</a>
+</div>
+<div class="cont-footer clearfix">
+<hr>
+<div class="pull-left tag-list">
+<span><img src="images/icon_08.jpg"> </span>
+<a>Cras consequat convallis libero ac vitae tincidunt dolor in elementum</a>
+</div>
+</article>
+<nav class="pagination" role="navigation">
+    <span class="page-number">第 1 页 ⁄ 共 8 页</span>
+        <a class="page-next"  href="#">></a>
+</nav>
+</main>
+<aside class="col-md-4 sidebar">
+<div class="widget">
+<h4 class="title">contact us </h4>
+<div class="content community">
+<p><a href="#">E: youremail@yourdomain.com</a></p>
+<p><a href="#">P: +88 (0) 101 0000 000</a></p>
+<p>Fax: +88 (0) 202 0000 001</p>
+</div>
+</div>
+<div class="widget">
+<h4 class="title"> DOWNLOAD</h4>
+<div class="content download">
+<a href="#" class="btn btn-default btn-block">FREE DOWNLOAD</a> 
+</div>
+</div>
+<div class="widget">
+<h4 class="title">Site navigation </h4>
+<div class="content tag-menu text-uppercase">
+<a href="#">HOME</a>
+<a href="#">article</a>
+<a href="#">FREE DOWNLOAD</a>
+<a href="#">news</a>
+<a href="#">ABOUT US</a>
+<a href="#">HISTORY</a>
+<a href="#">CONTACT</a>
+<a href="#">PHOTO</a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>    
+<footer class="main-footer ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h4 class="title text-uppercase">Recent Posts</h4>
+                        <div class="content recent-post">
+                                <div class="recent-single-post">
+                                    <a href="#" class="post-title">More People Are Posting on Instagram than Ever</a>
+                                    <div class="date">Dec, 16, 2015</div>
+                                </div>
+                             
+                               <div class="recent-single-post">
+                                    <a href="#" class="post-title">More People Are Posting on Instagram than Ever</a>
+                                    <div class="date">Dec, 16, 2015</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h4 class="title text-uppercase">Site navigation </h4>
+                        <div class="content tag-menu">
+                               <a href="#">HOME</a>
+                               <a href="#">article</a>
+                               <a href="#">FREE DOWNLOAD</a>
+                               <a href="#">news</a>
+                               <a href="#">ABOUT US</a>
+                               <a href="#">HISTORY</a>
+                               <a href="#">CONTACT</a>
+                               <a href="#">PHOTO</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h4 class="title text-uppercase">Address
+</h4>
+                        <div class="content tag-menu friend-links">
+                          98 West 21th Street, Suite 721 New York, NY 10010<br>
+                          E: youremail@yourdomain.com<br>
+                          P: +88 (0) 101 0000 000<br>
+                          Fax: +88 (0) 202 0000 001 
+                        </div>
+                </div></div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
