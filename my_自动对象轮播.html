@@ -109,7 +109,6 @@
 			this.oBox.onmouseover=function(){
 				clearInterval(oThis.auto_timer);
 			}
-			this.Auto();
 		},
 		createBtn:function(){
 			//碎片传递，用于提升效率，将所有新增先添加到碎片中，防止多次渲染导致的流畅°下降问题。
@@ -144,6 +143,7 @@
 		},
 		Auto:function(){
 			var oThis=this;
+			clearInterval(this.suto_timer);
 			this.auto_timer= setInterval(function(){
 				oThis.iNow<oThis.aImg.length-1? oThis.iNow++:(oThis.iNow=0);
 				oThis.Show();
