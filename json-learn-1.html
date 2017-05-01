@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h2>在 JavaScript 中创建 JSON 对象</h2>
+	<p>
+	Name: <span id="jname"></span>
+	<br />
+	Age: <span id="jage"></span>
+	<br />
+	Address: <span id="jstreet"></span>
+	<br />
+	Phone: <span id="jphone"></span>
+	<br />
+	</p>
+</body>
+<script type="text/javascript">
+	var json_obj={
+		"name":"qianye",
+		"street":"shanghaijie",
+		"age":23,
+		"phone":110
+	}
+	var $=function(id){return typeof id==="string"?document.getElementById(id):id};
+	var $$=function(tagName,oParent){return (oParent||tagName).getElementsByTagName(tagName)};
+	$("jname").innerHTML=json_obj.name;
+	$("jage").innerHTML=json_obj.age;
+	$("jstreet").innerHTML=json_obj.street;
+	$("jphone").innerHTML=json_obj.phone;
+</script>
+</html>

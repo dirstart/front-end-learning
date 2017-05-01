@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	loadXML = function(xmlFile){  
+    var xmlDoc=null;  
+    var agent = navigator.userAgent.toLowerCase();  
+  
+    //判断浏览器的类型  
+    //支持IE浏览器  
+    if(agent.indexOf("msie") > 0){  
+        alert("22");  
+        var xmlDomVersions = ['MSXML.2.DOMDocument.6.0','MSXML.2.DOMDocument.3.0','Microsoft.XMLDOM'];  
+        for(var i=0;i<xmlDomVersions.length;i++){  
+            try{  
+                xmlDoc = new ActiveXObject(xmlDomVersions[i]);  
+                break;  
+            }catch(e){  
+            }  
+        }  
+    }  
+    //支持firefox浏览器  
+     else if(agent.indexOf("firefox") > 0){  
+        try{  
+            xmlDoc = document.implementation.createDocument('','',null);  
+        }catch(e){  
+        }  
+    } else{//谷歌浏览器   
+        var oXmlHttp = new XMLHttpRequest() ;  
+        oXmlHttp.open( "GET", xmlFile, false ) ;  
+        oXmlHttp.send(null) ;   
+        return oXmlHttp.responseXML;  
+    }  
+     if(xmlDoc!=null){  
+        xmlDoc.async = false;  
+        xmlDoc.load(xmlFile);  
+    }   
+    return xmlDoc;  
+}  
+var x=loadXML("test2.xml");
+alert("a");
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Login>
+    <Character>
+        <C Text="热血" Value="0"></C>
+        <C Text="弱气" Value="1"></C>
+        <C Text="激情" Value="2"></C>
+        <C Text="冷静" Value="3"></C>
+        <C Text="冷酷" Value="4"></C>
+    </Character>
+    <Weapon>
+        <W Text="光束剑" Value="0"></W>
+        <W Text="光束配刀" Value="1"></W>
+    </Weapon>
+    <EconomyProperty>
+        <P Text="平均型" Value="0"></P>
+        <P Text="重视攻击" Value="1"></P>
+        <P Text="重视敏捷" Value="2"></P>
+        <P Text="重视防御" Value="3"></P>
+        <P Text="重视命中" Value="4"></P>
+    </EconomyProperty>
+</Login>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		loadXML=function(xmlFile){
+			var xmlDoc;
+			//IE浏览器
+			if(window.ActiveXObject){
+				xmlDoc=new ActiveXObject('Microsoft.XMLDOM');
+				xmlDoc.async=false;
+				xmlDoc.load(xmlFile);
+			//支持火狐浏览器
+			}else if(document.implementation && document.implementation.createDocument){
+				xmlDoc=document.implementation.createDocument(",",null);
+				xmlDoc.load(xmlFile);
+			}else{
+				return null;
+			}
+			return xmlDoc;
+		}
+
+		var x=loadXML('test2.xml');
+		var v = x.getElementsByTagName('Login/Weapon/W')[0].childNodes.getAttribute('Text');
+
+	</script>
+</body>
+</html>
