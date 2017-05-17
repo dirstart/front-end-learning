@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	body{
+		background: #000;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+</style>
+<body>
+<div id="flame">
+	
+</div>
+</body>
+<script type="text/javascript">
+	//空对象
+	function Obj() {};
+	//添加原型方法
+	Obj.prototype.draw = function(o) {
+		var speed = 0;
+		var startLeft = Math.ceil(Math.random() * document.documentElement.clientWidth);
+		o.style.opacity = (Math.ceil(Math.random() * 5) + 5) / 10; //设置雪花透明度
+		o.style.left = startLeft + 'px';
+		o.style.color = '#fff';
+		o.style.fontSize = 12 + Math.ceil(Math.random() * 14) + 'px';
+		setInterval(function() {
+			if (speed < document.documentElement.clientHeight) {
+				o.style.top = speed + 'px';
+				o.style.Left = startLeft + Math.ceil(Math.random() * 8) + 'px';
+				speed += 10;
+			} else {
+				o.style.display = 'none';
+			}
+		}, 400);
+	};
+
+	var flame = document.getElementById('flame');
+
+	setInterval(function() {
+		var oDiv = document.createElement('div');
+		oDiv.innerHTML = "*";
+		oDiv.style.position = 'absolute';
+		flame.appendChild(oDiv);
+		var obj = new Obj();
+		obj.draw(oDiv);
+	}, 100);
+</script>
+</html>
