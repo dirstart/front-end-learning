@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,div{margin: 0;padding: 0;}
+		.main-bg{
+			width: 800px;
+			height: 800px;
+			background: #232123;
+			position: relative;
+		}
+		.snow{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: #fff;
+			position: absolute;
+			animation: mysnow 20s;
+		}
+		@keyframes mysnow{
+			0%{opacity: 0;bottom: 100%;}
+			50%{opacity: 1;bottom: 50%}
+			100%{opacity: 0;bottom: 0%;}
+		}
+	</style>
+</head>
+<body>
+	<div class="main-bg" id="main-bg"></div>
+</body>
+<script type="text/javascript">
+	window.onload=function(){
+		var oBg=document.getElementById("main-bg");
+		var oWidth=oBg.clientWidth;
+		setInterval(function(){
+			var oDiv=document.createElement("div");
+			oDiv.className="snow";
+			oDiv.style.left=Math.ceil(Math.random()*oWidth)+"px";
+			oBg.appendChild(oDiv);	
+		},400);
+		
+	}
+</script>
+</html>

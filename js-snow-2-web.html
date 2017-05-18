@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style> 
+body { background: #232123; }
+@keyframes mysnow {
+    0% { bottom: 100%; opacity: 0; }
+    50% { opacity: 1; transform: rotate(720deg);}
+    100% { transform: rotate(0deg); opacity: 0; bottom: 0%;}
+}
+.container { position: fixed; }
+.pic { position: absolute; opacity: 0; animation: mysnow 5s;height: 30px; }
+</style> 
+</head>
+<body>
+	<div id="snowFlow" > 
+
+	</div>
+</body>
+<script type="text/javascript">
+    window.onload=function(){
+        // snowFlow();
+       //innerHeight是Chorom的？clientWidth是IE的
+        function snowFlow(left,height,src){
+            var container=document.createElement('div');
+            var pic=document.createElement('img');
+            var snowFlow=document.getElementById('snowFlow');
+            pic.className='pic';
+            container.className='container';    
+            snowFlow.appendChild(container);
+            container.appendChild(pic);
+            container.style.left=left+'px';
+            container.style.height=height+'px';
+            pic.src=src;
+            setTimeout(function(){
+                snowFlow.removeChild(container);
+            },5000);
+        }
+
+        setInterval(function(){    
+
+        var left=Math.random()*window.innerWidth;
+        var height=Math.random()*window.innerHeight;
+        var src = './images/yinfu.png';      
+        	snowFlow(left,height,src);
+        },500)
+
+        }
+</script>
+</html>

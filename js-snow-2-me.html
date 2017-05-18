@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,div{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: #000;
+		}
+		.snow{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: #fff;
+			animation: mysnow 20s;
+			position: absolute;
+		}
+		@keyframes mysnow{
+			0%{opacity: 0;}
+			50%{opacity: 1}
+			100%{opacity: 0;}
+		}
+		#canvas{
+			width: 800px;
+			height: 800px;
+			background: #213123;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var canvas=document.getElementById("canvas");
+			var maxWidth=canvas.clientWidth;
+			var maxHeight=canvas.clientHeight;
+
+			function Snow(){};
+			Snow.prototype.Move=function(x){
+				var speed=Math.ceil(Math.random()*1);
+				x.style.top=Math.floor(Math.random()*maxWidth);
+				x.style.left=Math.floor(Math.random()*maxHeight);
+				setInterval(function(){
+					if(parseInt(x.style.top)<maxHeight){
+						x.style.top=parseInt(x.style.top)+speed+"px";
+					}else{
+						x.style.display="none";
+					}
+				},30);
+
+			}
+			setInterval(function(){
+				var oDiv=document.createElement("div");
+				oDiv.className="snow";
+				oDiv.style.top=0+"px";
+				oDiv.style.left=Math.ceil(Math.random()*maxHeight)+"px";
+				canvas.appendChild(oDiv);
+				var snow=new Snow();
+				snow.Move(oDiv);
+			},200);
+		};
+	</script>
+</head>
+<body>
+<div id="canvas"></div>
+</body>
+</html>
