@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div,body{
+			margin: 0;
+			padding: 0;
+		}
+		#snow-bg{
+			width: 800px;
+			height: 800px;
+			background: #231123;
+		}
+		.snow{
+			width: 10px;
+			height: 10px;
+			background: #fff;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	window.onload=function(){
+		var snowBg=document.getElementById("snow-bg");
+		var snowDiv=document.createElement("div");
+		var maxWidth=snowBg.clientWidth;
+		var maxHeight=snowBg.clientHeight;
+		alert(maxWidth);
+		snowDiv.className="snow";
+		snowBg.appendChild(snowDiv);
+		var snowCount=10;
+		//横轴纵轴
+		var positionD,positionX,positionY;
+		//左右摆动的幅度，横坐标偏移步长，纵坐标偏移步长
+		var rangeA,rangeX,rangeY;
+
+
+	};
+</script>
+<body>
+	<div id="snow-bg"></div>
+</body>
+</html>
