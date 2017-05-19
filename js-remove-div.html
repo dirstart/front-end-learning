@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#box{
+			width: 800px;
+			height: 400px;
+			background: #f39f3e;
+		}
+		.snow{
+			width: 100px;
+			height: 100px;
+			background: #323233;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var box = document.getElementById("box");
+			var btnAdd = document.getElementById("add");
+			var btnRemove = document.getElementById("remove");
+			var flag = false;
+
+			btnAdd.onclick = function() {
+				if (flag === false) {
+					var oAdd = document.createElement("div");
+					oAdd.className = "snow";
+					oAdd.id = "live";
+					box.appendChild(oAdd);
+					flag = true;
+				} else {
+					alert("只能有一个Div");
+				}
+			};
+
+			btnRemove.onclick = function() {
+				if (flag === true) {
+					var liveDiv = document.getElementById("live");
+					liveDiv.parentNode.removeChild(liveDiv);
+					flag = false;
+				} else {
+					alert("已经没有Div了");
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<button id="add">点我增加Div</button>
+	<button id="remove">点我删除Div</button>
+</body>
+</html>
