@@ -18,26 +18,65 @@
 			height: 10px;
 			background: #fff;
 			border-radius: 50%;
+			position: absolute;
+			animation: mysnow 10s;
+		}
+		@keyframes mysnow{
+			0%{opacity: 0;}
+			50%{opacity: 1;}
+			100%{opacity: 0;}
 		}
 	</style>
 </head>
 <script type="text/javascript">
 	window.onload=function(){
-		var snowBg=document.getElementById("snow-bg");
-		var snowDiv=document.createElement("div");
-		var maxWidth=snowBg.clientWidth;
-		var maxHeight=snowBg.clientHeight;
-		alert(maxWidth);
-		snowDiv.className="snow";
-		snowBg.appendChild(snowDiv);
-		var snowCount=10;
-		//横轴纵轴
-		var positionD,positionX,positionY;
-		//左右摆动的幅度，横坐标偏移步长，纵坐标偏移步长
-		var rangeA,rangeX,rangeY;
+		var curtain=document.getElementById("snow-bg");
+		var maxWidth=curtain.clientWidth;
+		var maxHeight=curtain.clientHeight;
+		var snowProp=[];//用于保存每一个雪花
+		var snowDiv=[];//用于保存每个雪花Div
+
+		var snow=function(){};
+
+		snow.prototype.init=function(){
+			setInterval(function(){
+			var o={
+				positionX:Math.random()*maxWidth,
+				positionY:Math.random()*50,
+				speed:Math.random()*10,
+				shake:Math.random()*2+(-1),
+			};
+			var oDiv=document.createElement("div");
+			oDiv.style.top=o.positionY+"px";
+			oDiv.style.left=o.positionX+"px";
+			oDiv.className="snow";
+			curtain.appendChild(oDiv);
+
+			snowProp.push(o);
+			snowDiv.push(oDiv);
+			}	,400);
+		};
+		//失败品，正确的做法应该是先描述一个雪花的动作，然后量产，而不是一次性产生好多雪花一起来控制他们的行为
+		snow.prototype.move=function(){
+
+		}
+
+		var snowObj=new snow();
+		snowObj.init();
 
 
-	};
+
+
+// 	window.requestAnimFrame = (function() {
+// 				return window.requestAnimationFrame ||
+// 					window.webkitRequestAnimationFrame ||
+// 					window.mozRequestAnimationFrame ||
+// 					function(callback) {
+// 						window.setTimeout(callback, 1000 / 60);
+// 					};
+// })();
+
+	}
 </script>
 <body>
 	<div id="snow-bg"></div>
