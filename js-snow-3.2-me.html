@@ -56,15 +56,14 @@
 					// this.positionX=parseInt(oThis.snowDiv.style.left)+oThis.shake;
 					// console.log(this.positionX);
 	
-					if(parseInt(this.positionY)>maxHeight){
-						// !!!!!!!!!!!那么问题来了
-						//为什么！！！我不加  parseInt的时候是错误的？？？？？？！！！！！
+					if(this.positionY>maxHeight){
 						oThis.snowDiv.className="empty";
 						clearInterval(timer);
 					}else{
 						oThis.snowDiv.style.top=this.positionY+"px";
 						// oThis.snowDiv.style.left=this.positionX+"px";
 					}
+					console.log("a");
 				},50);
 			};
 
