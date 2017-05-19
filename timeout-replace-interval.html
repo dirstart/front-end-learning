@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 200px;
+			height: 200px;
+			background: #322123;
+		}
+		body,div{
+			margin: 0;
+			padding: 0;
+			color:#fff;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	window.onload=function(){
+		var executeTime=0;
+		var intervalTime=500;
+		var intervalId=0;
+
+		var num1=document.getElementById("num1");
+		var num2=document.getElementById("num2");
+		var box=document.getElementById("box");
+		intervalId=setInterval(intervalFun,intervalTime);
+		function intervalFun(){
+			executeTime++;
+			num1.innerHTML=executeTime;
+			if(executeTime==5){
+				clearInterval(intervalId);
+			}
+
+		}
+
+		var executeTime2=0;
+		function timeoutFun(){
+			executeTime2++;
+			num2.innerHTML=executeTime2;
+
+			if(executeTime2<5){
+				setTimeout(arguments.callee,intervalTime);
+			}
+		}
+		setTimeout(timeoutFun,intervalTime);
+	}
+
+
+
+
+	
+</script>
+<body>
+	<div id="box">
+		<span>setInterval:</span>
+			<span id="num1"></span>
+			<hr/>
+		<span>setTimeout:</span>
+			<span id="num2"></span>
+	</div>
+</body>
+</html>
