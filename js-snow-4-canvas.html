@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		background: #000;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="curtain"></canvas>
+</body>
+<script type="text/javascript">
+	var $=function(id){
+		return typeof id === "string" ? document.getElementById(id) : id;
+	};
+	var curtain=$("curtain");
+	var ctx=curtain.getContext('2d');
+	var maxWidth=window.innerWidth;
+	var maxHeight=window.innerHeight;
+
+	curtain.width=maxWidth;
+	curtain.height=maxHeight;
+
+	var maxCount=300;
+	var snowObj=[];
+
+	for(var i=0;i<maxCount;i++){
+		snowObj.push({
+			positionX:Math.random()*maxWidth,
+			positionY:Math.random()*maxHeight,
+			radius:Math.random()*3+1,
+			density:Math.random()*maxCount
+		});
+	}
+
+	function Draw(){
+		ctx.clearRect(0,0,maxWidth,maxHeight);
+		ctx.fillStyle="rgba(255,255,255,0.8)";
+		ctx.beginPath();
+
+		for(var i=0;i<maxCount;i++){
+			var now=snowObj[i];
+			ctx.moveTo(now.positionX,now.positionY);
+			ctx.arc(now.positionX,now.positionY,0,Math.PI*2,true);
+		}
+		ctx.fill();
+
+		Update();
+	}
+
+	var angle=0;
+
+	function Update(){
+		angle+=0.01;
+
+
+	}
+
+	Draw();
+
+
+</script>
+</html>

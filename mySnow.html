@@ -28,75 +28,77 @@
 		}
 	</style>
 	<script type="text/javascript">
-		window.onload=function(){
-			var $=function(id){return typeof id==="string"?document.getElementById(id):id};
-			var curtain=$("curtain");
-			var maxWidth=curtain.clientWidth-50;
-			var maxHeight=curtain.clientHeight;
+		window.onload = function() {
+			var $ = function(id) {
+				return typeof id === "string" ? document.getElementById(id) : id
+			};
+			var curtain = $("curtain");
+			var maxWidth = curtain.clientWidth - 50;
+			var maxHeight = curtain.clientHeight;
 
-			var snowControl=function(){};
+			var snowControl = function() {};
 
-			snowControl.prototype={
-				Obj:[],
-				maxCount:400,
-				count:0,
-				Prepare:function(){
-					for(var i=0;i<this.maxCount;i++){
-						var o={
-							positionX:Math.ceil(Math.random()*maxWidth),
-							positionY:Math.ceil(Math.random()*50),
-							speed:Math.ceil(Math.random()*5+3),
-							shake:Math.ceil(Math.random()*3)
-						};					
+			snowControl.prototype = {
+				Obj: [],
+				maxCount: 400,
+				count: 0,
+				Prepare: function() {
+					for (var i = 0; i < this.maxCount; i++) {
+						var o = {
+							positionX: Math.ceil(Math.random() * maxWidth),
+							positionY: Math.ceil(Math.random() * 50),
+							speed: Math.ceil(Math.random() * 5 + 3),
+							shake: Math.ceil(Math.random() * 3)
+						};
 						this.Obj.push(o);
 					};
 				},
-				Init:function(){
-					if(this.Obj!=null){
-						var oDiv=document.createElement("div");
-						oDiv.className="snow";
-						var now=this.Obj.shift();
-						oDiv.style.top=now.positionY+"px";
-						oDiv.style.left=now.positionX+"px";
+				Init: function() {
+					if (this.Obj != null) {
+						var oDiv = document.createElement("div");
+						oDiv.className = "snow";
+						var now = this.Obj.shift();
+						oDiv.style.top = now.positionY + "px";
+						oDiv.style.left = now.positionX + "px";
 						curtain.appendChild(oDiv);
-						this.Move(oDiv,now);
+						this.Move(oDiv, now);
 						++this.count;
-					}else{
+					} else {
 						return false;
 					}
 				},
-				Move:function(oDiv,now){
-					var timer=setInterval(function(){
-						if(now.positionX<maxWidth || now.positioY<maxHeight){
-							now.positionY=now.positionY+now.speed;
-							now.positionX=now.positionX+now.shake;
-							oDiv.style.top=now.positionY+"px";
-							oDiv.style.left=now.positionX+"px";
-						}else{
-							now.positionX=Math.ceil(Math.random()*maxWidth);
-							now.positionY=Math.ceil(Math.random()*50);
+				Move: function(oDiv, now) {
+					var timer = setInterval(function() {
+						if (now.positionX < maxWidth || now.positioY < maxHeight) {
+							now.positionY = now.positionY + now.speed;
+							now.positionX = now.positionX + now.shake;
+							oDiv.style.top = now.positionY + "px";
+							oDiv.style.left = now.positionX + "px";
+						} else {
+							now.positionX = Math.ceil(Math.random() * maxWidth);
+							now.positionY = Math.ceil(Math.random() * 50);
 						}
-					},30);
+					}, 30);
 				},
 
-				Letsgo:function(){
-					var oThis=this;
-					var gotimer=setInterval(function(){
-						if(oThis.count==oThis.maxCount){
+				Letsgo: function() {
+					var oThis = this;
+					var gotimer = setInterval(function() {
+						if (oThis.count == oThis.maxCount) {
 							clearInterval(gotimer);
-						}else{
+						} else {
 							oThis.Init();
 						}
-					},400);
+					}, 400);
 				}
 
 			};
 
-			var snow=new snowControl();
+			var snow = new snowControl();
 			snow.Prepare();
 			snow.Letsgo();
 
-};
+		};
 	</script>
 </head>
 <body>
