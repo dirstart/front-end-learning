@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var rgb="rgb(23,34,23)";
+		rgb=rgb.split(",");
+		console.log(rgb);     // ["rgb(23","34","23)"]
+		console.log(rgb[0]);	// rgb(23
+		console.log(rgb[1]);	// 34
+		console.log(rgb[2]);	// 23
+		var r=parseInt(rgb[0].split("(")[1]);	
+		var g=parseInt(rgb[1]);
+		var b=parseInt(rgb[2].split(")")[0]);
+		console.log(r,g,b);   //23,34,23
+
+		var hex="#"+((r<<16)+(g<<8)+b).toString(16);
+		console.log(hex);     //#172217
+		var hex2="#"+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
+		console.log(hex2);	//#172217
+
+		function rgbChange(color){
+			var rgb=color.split(",");
+			var r=parseInt(rgb[0].split("(")[1]);
+			var g=parseInt(rgb[1]);
+			var b=parseInt(rgb[2].split(")")[0]);
+
+			var hex="#"+((r<<16)+(g<<8)+b).toString(16);
+			return hex;
+		};
+
+		var test_color="rgb(122,230,222)";
+		var x=rgbChange(test_color);
+		console.log(x);
+		var test_2="rgb(23,34,23)";
+		console.log(rgbChange(test_2));
+	</script>
+</body>
+</html>
