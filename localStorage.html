@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+// localStorage 存储的格式是 string
+	var arr=[1,2,4];
+	localStorage.setItem("temp",arr);
+	var x=localStorage.getItem("temp");
+	console.log(x,typeof x);
+// 
+	var obj={"a":1,"b":2};
+	obj=JSON.stringify(obj);//转化为JSON字符串
+	localStorage.setItem("temp2",obj);
+	var l=localStorage.getItem("temp2");
+	console.log(l,typeof l);
+</script>
+</html>
