@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>pubuliu</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <button id="btn1">一</button>
+  <button id="btn2">二</button>
+  <button id="btn3">三</button>
+</body>
+<script>
+const oBtn = document.getElementById("btn1");
+oBtn.onclick = () => {
+  console.log("123");
+  randomColor();
+}
+const randomColor = () => {
+  const color = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+  document.body.style.background = color;
+  // document.body.style.background = '#a';
+  console.log(color);
+}
+</script>
+</html>
