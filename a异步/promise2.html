@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let arr = [404, 200];
+let p1 = () => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let index = Math.round(Math.random());
+    let res = arr[index];
+
+    console.log('2秒后,res1:', res);
+    if (res === 404) {
+      resolve(404);
+    } else if (res === 200) {
+      resolve();
+    }
+  }, 2000);
+});
+
+let p2 = () => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let index = Math.round(Math.random());
+    let res = arr[index];
+
+    console.log('3秒后, res2:', res);
+    if (res = 404) {
+      resolve(404);
+    } else if (res === 200) {
+      resolve();
+    }
+
+  }, 3000);
+});
+
+Promise.all([p1(), p2()])
+.then((data) => {
+  console.log(data);
+})
+.catch(() => {});
+</script>
+</html>
