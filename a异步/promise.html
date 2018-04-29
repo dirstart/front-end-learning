@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script type="text/javascript">
+// let p = new Promise((resolve, reject) => {
+//   // 一些异步操作
+//   setTimeout(() => {
+//     console.log('执行完成');
+//     resolve('将数据遗留给后人');
+//   }, 1000);
+// });
+
+
+
+// const Invoke = () => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log('执行完成');
+//       resolve({name: 'Jobs'});
+//     }, 2000);
+//   });
+// };
+
+// Invoke().then((data) => {
+//   console.log(data);
+// });
+
+
+
+
+// const fuckPromise = (callback) => {
+//   setTimeout(() => {
+//     console.log('先实现一个小目标');
+//     callback({name: 'Jobs'});
+//   }, 1000);
+// };
+
+// fuckPromise((data) => {
+//   console.log(data);
+// });
+
+
+
+
+// const stepOne = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve('峰哥峰哥,');
+//     }, 1000);
+//   });
+// };
+
+// const stepTwo = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve('影魔王！');
+//     }, 1000);
+//   });
+// };
+
+// stepOne()
+// .then((data) => {
+//   console.log(data);
+//   return stepTwo();
+// })
+// .then((data) => {
+//   console.log(data);
+// });
+
+
+
+// 蛋疼的 无限地狱版本
+
+// let fuckCallback = () => {
+//   setTimeout(() => {
+//     console.log('峰哥峰哥,');
+
+//     setTimeout(() => {
+//       console.log('影魔王');
+//     }, 1000);
+//   }, 1000);
+// }
+
+// fuckCallback();
+
+// let callbackOne = (callback) => {
+//   setTimeout(() => {
+//     console.log('峰哥峰哥');
+//     callback();
+//   }, 1000);
+// };
+
+// let callbackTwo = (callback) => {
+//   setTimeout(() => {
+//     console.log('峰哥牛逼');
+//     callback();
+//   }, 1000);
+// };
+
+// callbackOne(() => {
+//   callbackTwo(() => {
+//     console.log('也许我是下一个操作');
+//   });
+// });
+
+
+// let wrap = () => {
+//   return new Promise(resolve => {
+//     resolve({name: 'jobs'});
+//   });
+// };
+
+// wrap()
+// .then(data => {
+//   console.log(data);
+//   return data;
+// })
+// .then(data => {
+//   console.log('我再传', data);
+// });
+
+
+
+// let testReject = () => {
+//   return new Promise((resolve, reject) => {
+//     const head = Math.random();
+//     if (head > 0.5) {
+//       reject('yyf头太大了');
+//     } else {
+//       resolve('千军万马避蓝猫');
+//     }
+//   });
+// }
+
+// testReject()
+// .then(data => console.dir(data))
+// .catch(e => console.error(e));
+
+let p1 = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('我会执行两秒钟');
+      resolve();
+    }, 2000);
+  });
+};
+let p2 = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('我会执行一秒钟');
+      resolve();
+    }, 1000);
+  });
+};
+
+// Promise
+// .all([p1(), p2()])
+// .then(() => console.log('他们都 resolve了，共计时 2s'));
+
+Promise
+.race([p1(), p2()])
+.then(() => console.log('看看过了几秒？'));
+
+</script>
+</html>
