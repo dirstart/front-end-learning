@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let p1 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data')
+    .then(res => res.json())
+    .then(data => resolve(data))
+    .catch(e => console.log(e));
+  });
+
+  let p2 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2')
+    .then(res => res.json())
+    .then(data => resolve(data))
+    .catch(e => console.log(e));
+  });
+
+  function PromiseAll(promises) {
+    var args = Array.prototype.slice.call(promises);
+    return new Promise(function(resolve, reject) {
+      // 要注意，
+      if (args.length === 0) return resolve([]);
+
+      // 最后的结果
+      var resolveValues = new Array(args.length);
+      // 计数器
+      var resolveCounter = 0;
+
+      for(var i = 0; i < args.length; i++) {
+        (function(i) {
+          // 通过在这里resolve了，但是这里又传了一次 then，所以在这里并未结束。
+          Promise.resolve(promises[i]).then(function(value) {
+            resolveCounter++;
+            resolveValues[i] = value;
+            if (resolveCounter === args.length) {
+              return resolve(resolveValues);
+            }
+          }, function(reason) {
+            return reject(reason);
+          });
+        })(i);
+      }
+    });
+  }
+
+  PromiseAll([p1(), p2()])
+  .then(data => console.log(data));
+
+  // Promise.all([p1(), p2()])
+  // .then(data => console.log(data));
+
+</script>
+</html>

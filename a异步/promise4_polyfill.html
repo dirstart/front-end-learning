@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let p1 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data')
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(e => console.log(e));
+  });
+
+  let p2 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2')
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(e => console.log(e));
+  });
+
+  // polyfill start
+
+  Promise.all = function(arr) {
+    var args = Array.prototype.slice.call(arr);
+
+    return new Promise(function (resolve, reject) {
+      // 若传进来的数组为 0
+      if (args.length === 0) return resolve([]);
+      // 这里出现了计数的 数组长度 - 所有的 Promise 长度
+      var remaining = args.length;
+
+
+      function res(i, val) {
+        // 某种程度上，说明了 val 是一个Promise对象
+        if (val && (typeof val === 'object')) {
+          var then = val.then;
+          // 确认一下是不是 promise 中的 then 函数
+          if (typeof then === 'function') {
+            var p = new Promise(then.bind(val));
+            p.then(function(val) {
+              res(i, val);
+            }, reject);
+            return;
+          }
+        }
+
+        // 跳到这里来的有两种：
+        // A.不是Promise对象，直接跳过来
+        // B.执行过后的Promise对象，Promise要在上面的地方多执行一次,返回来的数据就是
+        args[i] = val;
+        if (--remaining === 0) {
+          // 这里就是结果数组了吧
+          resolve(args);
+        }
+      }
+
+
+
+      for(var i = 0; i < args.length; i++) {
+        res(i, args[i]);
+      }
+    })
+  }
+
+  Promise.all([p1(), p2()])
+  .then();
+</script>
+</html>
