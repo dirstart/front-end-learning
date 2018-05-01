@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="../../jQuery/jquery.min.js"></script>
+<script>
+  // $.ajax(
+  //   "https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2",
+  // {
+  //   type: "get",
+  //   dataType: "json"
+  // }).done((data) => {
+  //   console.log(data);
+  // }).always((data) => {
+  //   console.log(data);
+  // })
+
+  $.when($.ajax("https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2"),
+    $.ajax("https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data"))
+    .done((data1, data2) => {
+      console.log(data1);
+      console.log(data2);
+    })
+    .done((data1) => {
+      console.log('他们成功了', data1);
+    })
+</script>
+</html>

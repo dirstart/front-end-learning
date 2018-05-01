@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="../../jQuery/jquery.min.js"></script>
+<script>
+  // 普通回调
+  // var wait = function () {
+  //   setTimeout(() => console.log('5秒之后输出我'), 5000);
+  // }
+
+  // wait();
+  // console.log('我先走一步了');
+
+  // // 用 deferred 的方式
+  var defer = $.Deferred();
+
+  var wait2 = function (defer) {
+    setTimeout(() => {
+      console.log('5秒之后输出我');
+      defer.resolve();
+    }, 2000);
+
+    return defer.promise();
+  }
+
+  $.when(wait2(defer))
+    .done(() => console.log('这次我没有先走一步'));
+
+  // defer.resolve();
+  // 这就是上面那样写的缺陷，在外部可以直接  改变 defer 对象。
+
+  // 还是用 deferred 的方式
+
+  // var wait3 = function() {
+  //   var dtd = $.Deferred();
+  //   setTimeout(() => {
+  //     console.log('5秒之后');
+  //     dtd.resolve();
+  //   }, 5000);
+  //   return dtd.promise();
+  // }
+
+  // $.when(wait3())
+  //   .done(() => console.log('我出现了wait3'));
+
+  // 4.自己写一个正式用的例子
+
+  // var defer = $.Deferred();
+  // function test (deferred) {
+  //   $.ajax("https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2")
+  //   .always((data) => {
+  //     console.log(data);
+  //     deferred.resolve(data);
+  //   });
+  // }
+
+  // test(defer);
+
+  // defer.done((data) => {
+  //   console.log("数据获取完成", data.errcode);
+  // })
+
+
+  // 操作数据的逻辑
+</script>
+</html>
