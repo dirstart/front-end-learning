@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Promise animation</title>
+	<style type="text/css">
+		.ball{
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
+		}
+		.ball1{
+			background: red;
+		}
+		.ball2{
+			background: yellow;
+		}
+		.ball3{
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="ball ball1"></div>
+	<div class="ball ball2"></div>
+	<div class="ball ball3"></div>
+	<script type="text/javascript">
+		const ball1 = document.querySelector(".ball1");
+		const ball2 = document.querySelector(".ball2");
+		const ball3 = document.querySelector(".ball3");
+
+		const getStyle = (ele, attr) => {
+			if (window.getComputedStyle) {
+				return window.getComputedStyle(ele, null)[attr];
+			} else {
+				return ele.currentStyle[attr];
+			}
+		};
+
+		const Promise = window.Promise;
+
+		const promiseAnimate = (ball, target) => {
+			return new Promise((resolve, reject) => {
+					const auto = (ball, target) => setTimeout(() => {
+						let marginLeft = parseInt(getStyle(ball, "marginLeft"));
+						if (marginLeft === target) {
+							resolve();
+						} else {
+							if (marginLeft < target) {
+								marginLeft ++;
+							} else {
+								marginLeft --;
+							}
+							ball.style.marginLeft = marginLeft + "px";
+							auto(ball, target);
+						}
+					}, 10);
+
+					auto(ball, target);
+			});
+		};
+
+		promiseAnimate(ball1, 100)
+		.then(() => {
+			return promiseAnimate(ball2, 200);
+		})
+		.then(() => {
+			return promiseAnimate(ball3, 300);
+		});
+
+	</script>
+</body>
+</html>
