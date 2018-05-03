@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let p1 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data2')
+    .then(res => res.json())
+    .then(data => {
+      reject(data);
+      /*
+        success -> resolve(json): 正确的结果
+        (!success).404 -> resolve(json): 错误的结果 1
+
+        (!success).(!404) -> reject(json): 其他的错误一律 reject
+      */
+    });
+  });
+
+
+  let p2 = () => new Promise((resolve, reject) => {
+    fetch('https://www.easy-mock.com/mock/5ae316f1e671403cb1da46af/example/data')
+    .then(res => res.json())
+    .then(data => {
+      reject(data);
+      /*
+        success -> resolve(json): 正确的结果
+        (!success).404 -> resolve(json): 错误的结果 1
+
+        (!success).(!404) -> reject(json): 其他的错误一律 reject
+      */
+    })
+  });
+
+  Promise.all([p1(), p2()])
+  .then((data) => {
+    /*
+      数据结构 [x, y] -> [404, 404]/[null, 404]/[404, null]/[null, null]
+      if ([].indexOf('404') !== -1) {
+        弹出框说明
+        ------------------ defer.reject();    -> 有一个404，弹出 errWindows
+      } else { 
+        ------------------ defer.resolve();   -> 都成功   done
+      }
+  
+    */
+  }).catch((e, x) => {
+    console.log('上面不抛出,这里有一个错就退出', e, x);
+    /*
+      只会抛出一个错误。
+      这里写 reject 的逻辑。
+      1.hide所有
+      2.json.message
+
+      ---------------- defer.reject()          -> 整个服务获取，弹出 json.message
+    */
+  });
+  /*
+    这里在我们的代码中加上 finally -> hide();
+  */
+</script>
+</html>
